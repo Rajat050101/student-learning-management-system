@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% for lesson in subjects.lessons.all %}
+
+<a href="{% url 'curriculum:lesson_detail' slug=lesson.slug subject=subjects.slug standard=lesson.Standard.slug %}">Chapters-{{lesson.position}}: {{lesson.name}}</a><br>
+
+{% endfor %}
+{% if user.is_authenticated %}
+<a href="{% url 'curriculum:lesson_create' standard=subjects.standard.slug slug=subjects.slug %}">Create Lesson</a>
+{% else %}
+You must first login to create any lesson.
+{% endif %}
+{% endblock %}

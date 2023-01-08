@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h3>Are you sure you want to delete this lesson?</h3>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" name="delete" value="yes">
+    <a href="{% url 'curriculum:lesson_detail' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug %}">No</a>
+    
+</form>
+
+{% endblock %}
